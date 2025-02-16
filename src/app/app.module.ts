@@ -12,10 +12,16 @@ import { PaymentsModule } from './modules/payments/payments.module';
 import { StatisticsModule } from './modules/statistics/statistics.module';
 import { SupportModule } from './modules/support/support.module';
 import { TournamentsModule } from './modules/tournaments/tournaments.module';
+import { SideNavComponent } from './common/side-nav/side-nav.component';
+import { HeaderComponent } from './common/header/header.component';
+import { FooterComponent } from './common/footer/footer.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SideNavComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
