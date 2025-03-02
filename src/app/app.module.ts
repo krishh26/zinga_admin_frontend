@@ -15,6 +15,11 @@ import { TournamentsModule } from './modules/tournaments/tournaments.module';
 import { SideNavComponent } from './common/side-nav/side-nav.component';
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
+import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './utility/shared/shared.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { APIInterceptor } from './utility/interceptor/ApiInterceptor';
 
 @NgModule({
   declarations: [
@@ -34,9 +39,20 @@ import { FooterComponent } from './common/footer/footer.component';
     PaymentsModule,
     StatisticsModule,
     SupportModule,
-    TournamentsModule
+    TournamentsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
+    SharedModule
   ],
-  providers: [],
+  providers: [ { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: APIInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
