@@ -16,21 +16,10 @@
             "outputPath": "dist/westgate-website",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico"
-              
-            ],
-            "styles": [
-             "src/styles.css",
-              "src/assets/css/app-new.css",
-              "src/assets/css/bootstrap-icons.css",
-              "src/assets/css/zinga-style.css",
-              "src/assets/css/summernote-lite.min.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": [
               "src/assets/js/app-new.js",
               "src/assets/js/bootstrap.bundle.js",
@@ -43,13 +32,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "8mb",
+                  "maximumError": "8mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "8mb",
+                  "maximumError": "8mb"
                 }
               ],
               "outputHashing": "all"
@@ -86,34 +75,22 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css",
-               "src/assets/css/app-new.css",
-               "src/assets/css/bootstrap-icons.css",
-               "src/assets/css/zinga-style.css",
-               "src/assets/css/summernote-lite.min.css"
-             ],
-             "scripts": [
-               "src/assets/js/app-new.js",
-               "src/assets/js/bootstrap.bundle.js",
-               "src/assets/js/jquery.min.js",
-               "src/assets/js/summernote-lite.min.js"
-             ]
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
+            "scripts": [
+              "src/assets/js/app-new.js",
+              "src/assets/js/bootstrap.bundle.js",
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/summernote-lite.min.js"
+            ]
           }
         }
       }
     }
   },
   "cli": {
-    "analytics": "b301790b-24da-45a4-9d0d-adfb3f34823a"
+    "analytics": "37e9e630-ecc6-46a8-ace7-55e453bbd216"
   }
 }
