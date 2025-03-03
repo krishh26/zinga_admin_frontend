@@ -12,10 +12,10 @@ export enum UserEndPoint {
   RESET_PASSWORD = '/user/reset-password'
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   baseUrl!: string;
