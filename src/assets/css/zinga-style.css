@@ -7,7 +7,8 @@ Login CSS
 }
 
 .login-leftside {
-    background-image: url("../assets/img/login-screen-bg.jpg");
+    /* background-image: url("../img/login-screen-bg.jpg"); */
+    background-image: url("../img/ground-image.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -216,7 +217,7 @@ Nav Tabs CSS
      border-radius: 100px;
      margin-left: 15px;
  }
- 
+
  .inner-nav-tabs .nav-item.show .nav-link,
  .inner-nav-tabs .nav-link.active {
      color: #FFFF;
@@ -234,8 +235,8 @@ ul.TabLink{
 }
 ul.TabLink li{
     display: inline-block;
-    
-} 
+
+}
 ul.TabLink li a{
     display: block;
     text-align: center;
@@ -244,12 +245,12 @@ ul.TabLink li a{
     font-size: 1rem;
     font-weight: 600;
     color: #000;
-} 
-ul.TabLink li a:hover, ul.TabLink li a.active{    
+}
+ul.TabLink li a:hover, ul.TabLink li a.active{
     background-color: #4CAF50;
     color: #FFF;
     text-decoration: none;
-} 
+}
 .light-badge{
     background-color: #E2E2E2;
     color: #000;
@@ -616,7 +617,7 @@ Proifle setting
     background-color: #f8c20a !important;
 }
 .text-bg-secondary{
-    background-color: #16cdc7 !important; 
+    background-color: #16cdc7 !important;
 }
 /*==================================
   Media Query
