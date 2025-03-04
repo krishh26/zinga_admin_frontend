@@ -6,7 +6,7 @@ import { LocalStorageService } from '../local-storage/local-storage.service';
 import { Router } from '@angular/router';
 
 export enum AuthEndPoint {
-  LOGIN_USER = '/auth/login',
+  LOGIN_USER = '/user/auth',
   FORGOT_PASSWORD = '/auth/forgot-password',
   RESET_PASSWORD = 'auth/reset-password',
 }

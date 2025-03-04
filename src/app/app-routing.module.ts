@@ -1,8 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './modules/auth/login/login.component';
+import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'user', pathMatch: 'full' },
+  // { path: '', redirectTo: 'user', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'forgot', component: ForgotPasswordComponent },
+  { path: 'reset', component: ResetPasswordComponent },
   { path: 'user', loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule) },
   { path: 'clubs', loadChildren: () => import('./modules/clubs/clubs.module').then(m => m.ClubsModule) },
   { path: 'grounds', loadChildren: () => import('./modules/grounds/grounds.module').then(m => m.GroundsModule) },
