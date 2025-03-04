@@ -24,6 +24,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { LoginComponent } from './modules/auth/login/login.component';
 import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { ResetPasswordComponent } from './modules/auth/reset-password/reset-pass
     HttpClientModule,
     SupportModule,
     TournamentsModule,
-
+    NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
