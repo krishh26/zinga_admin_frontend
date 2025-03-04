@@ -18,8 +18,9 @@ import { FooterComponent } from './common/footer/footer.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './utility/shared/shared.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { APIInterceptor } from './utility/interceptor/ApiInterceptor';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { APIInterceptor } from './utility/interceptor/ApiInterceptor';
     GroundsModule,
     NotificationsModule,
     PaymentsModule,
+    PaymentsModule,
     StatisticsModule,
+    HttpClientModule,
     SupportModule,
     TournamentsModule,
     ToastrModule.forRoot({
@@ -45,14 +48,16 @@ import { APIInterceptor } from './utility/interceptor/ApiInterceptor';
       positionClass: 'toast-top-right',
       preventDuplicates: false,
     }),
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
-  providers: [ { provide: LocationStrategy, useClass: HashLocationStrategy },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: APIInterceptor,
-      multi: true
-    }],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: APIInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
