@@ -34,7 +34,7 @@
             <table class="table mb-0">
               <thead>
                 <tr>
-                  <th scope="col">Player ID</th>
+                  <!-- <th scope="col">User Name</th> -->
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
                   <th scope="col">Contact Number</th>
@@ -42,12 +42,19 @@
                 </tr>
               </thead>
               <tbody>
+
                 <tr>
+                  <td *ngIf="!userList?.length" colspan="6">
+                    <app-no-record-found></app-no-record-found>
+                  </td>
+                </tr>
+
+                <tr *ngFor="let user of userList">
                   <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                      href="player-details.html">@abhishek</a></td>
-                  <td>Abhishek</td>
-                  <td>abhishek@gmail.com</td>
-                  <td>9246256155</td>
+                      href="player-details.html"></a></td>
+                  <td>{{user?.name}}</td>
+                  <td>{{user?.email}}</td>
+                  <td>{{user?.mobile}}</td>
                   <td>
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="plauer1">
@@ -57,42 +64,11 @@
               </tbody>
             </table>
           </div>
-          <div class="card-footer">
-            <div class="row align-items-center justify-content-between">
-              <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 mob-mb1">
-                <div class="row align-items-center">
-                  <div class="col-col-lg-5 col-xl-5 col-6">
-                    <p class="mb-0">Record per page : </p>
-                  </div>
-                  <div class="col-lg-3 col-xl-3 col-6">
-                    <select class="form-select form-select-sm">
-                      <option>15</option>
-                      <option>30</option>
-                      <option>45</option>
-                    </select>
-                  </div>
-                </div>
+          <div class="row mt-3 align-items-center">
+            <div class="row">
+              <div class="pagination">
+                <pagination-controls [maxSize]="5" (pageChange)="paginate($event)"></pagination-controls>
 
-              </div>
-              <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 text-end mob-mb1">
-                <ul class="pagination m-auto justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 desktop-end mob-mb1">
-                <p class="mb-0">Showing 1-10 of 50 items</p>
               </div>
             </div>
           </div>

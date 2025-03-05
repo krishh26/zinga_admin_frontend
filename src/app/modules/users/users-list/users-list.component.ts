@@ -50,4 +50,11 @@ export class UsersListComponent {
     );
   }
 
+  paginate(page: number) {
+    this.page = page;
+    this.getUserLists();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+
 }
