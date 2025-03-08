@@ -1,424 +1,336 @@
-<main class="content">
-    <div class="container-fluid p-0">
-        <div class="card">
-            <div class="card-header">
-                <div class="row justify-content-between">
-                    <div class="col-lg-4 col-xl-4 col-12">
-                        <div class="form-group">
-                            <span class="input-icon-left"><i class="align-middle" data-feather="search"></i></span>
-                            <input type="text" class="form-control form-control-search"
-                                placeholder="Seach by package name, fees, validity">
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-xl-8 col-12">
-                        <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="players-tab" data-bs-toggle="tab"
-                                    data-bs-target="#players" type="button" role="tab" aria-controls="players"
-                                    aria-selected="true">Players</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="umpire-tab" data-bs-toggle="tab" data-bs-target="#umpire"
-                                    type="button" role="tab" aria-controls="umpire" aria-selected="false">Umpaires</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="groundowner-tab" data-bs-toggle="tab"
-                                    data-bs-target="#groundowner" type="button" role="tab" aria-controls="groundowner"
-                                    aria-selected="false">Ground Owner</button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="players" role="tabpanel" aria-labelledby="players-tab">
-                        <div class="table-responsive  border-rounded p-2">
-                            <table class="table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Player ID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Contact Number</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                routerLink="/users/player-details">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="player-details.html">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="player-details.html">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="player-details.html">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="player-details.html">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="player-details.html">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 mob-mb1">
-                                    <div class="row align-items-center">
-                                        <div class="col-col-lg-5 col-xl-5 col-6">
-                                            <p class="mb-0">Record per page : </p>
-                                        </div>
-                                        <div class="col-lg-3 col-xl-3 col-6">
-                                            <select class="form-select form-select-sm">
-                                                <option>15</option>
-                                                <option>30</option>
-                                                <option>45</option>
-                                            </select>
-                                        </div>
-                                    </div>
-    
-                                </div>
-                                <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 text-end mob-mb1">
-                                    <ul class="pagination m-auto justify-content-center">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 desktop-end mob-mb1">
-                                    <p class="mb-0">Showing 1-10 of 50 items</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade show active" id="umpire" role="tabpanel" aria-labelledby="players-tab">
-                        <div class="table-responsive  border-rounded p-2">
-                            <table class="table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Umpaire ID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Contact Number</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 mob-mb1">
-                                    <div class="row align-items-center">
-                                        <div class="col-col-lg-5 col-xl-5 col-6">
-                                            <p class="mb-0">Record per page : </p>
-                                        </div>
-                                        <div class="col-lg-3 col-xl-3 col-6">
-                                            <select class="form-select form-select-sm">
-                                                <option>15</option>
-                                                <option>30</option>
-                                                <option>45</option>
-                                            </select>
-                                        </div>
-                                    </div>
-    
-                                </div>
-                                <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 text-end mob-mb1">
-                                    <ul class="pagination m-auto justify-content-center">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 desktop-end mob-mb1">
-                                    <p class="mb-0">Showing 1-10 of 50 items</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade show active" id="groundowner" role="tabpanel" aria-labelledby="players-tab">
-                        <div class="table-responsive  border-rounded p-2">
-                            <table class="table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Ground Owner ID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Contact Number</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
-                                                href="javascript:void(0)">@abhishek</a></td>
-                                        <td>Abhishek</td>
-                                        <td>abhishek@gmail.com</td>
-                                        <td>9246256155</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="plauer1">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 mob-mb1">
-                                    <div class="row align-items-center">
-                                        <div class="col-col-lg-5 col-xl-5 col-6">
-                                            <p class="mb-0">Record per page : </p>
-                                        </div>
-                                        <div class="col-lg-3 col-xl-3 col-6">
-                                            <select class="form-select form-select-sm">
-                                                <option>15</option>
-                                                <option>30</option>
-                                                <option>45</option>
-                                            </select>
-                                        </div>
-                                    </div>
-    
-                                </div>
-                                <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 text-end mob-mb1">
-                                    <ul class="pagination m-auto justify-content-center">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 desktop-end mob-mb1">
-                                    <p class="mb-0">Showing 1-10 of 50 items</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                </div>
-            </div>
+<div class="container-fluid p-0">
+  <div class="card">
+    <div class="card-header">
+      <div class="row justify-content-between">
+        <div class="col-lg-4 col-xl-4 col-12">
+          <div class="form-group">
+            <span class="input-icon-left"><i class="align-middle" data-feather="search"></i></span>
+            <input type="text" class="form-control form-control-search"
+              placeholder="Seach by package name, fees, validity">
+          </div>
         </div>
+        <div class="col-lg-8 col-xl-8 col-12">
+          <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="players-tab" data-bs-toggle="tab" data-bs-target="#players"
+                type="button" role="tab" aria-controls="players" aria-selected="true">Players</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="umpire-tab" data-bs-toggle="tab" data-bs-target="#umpire" type="button"
+                role="tab" aria-controls="umpire" aria-selected="false">Umpaires</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="groundowner-tab" data-bs-toggle="tab" data-bs-target="#groundowner"
+                type="button" role="tab" aria-controls="groundowner" aria-selected="false">Ground Owner</button>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-</main>
+    <div class="card-body">
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="players" role="tabpanel" aria-labelledby="players-tab">
+          <div class="table-responsive  border-rounded p-2">
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <!-- <th scope="col">User Name</th> -->
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contact Number</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td *ngIf="!userList?.length" colspan="6">
+                    <app-no-record-found></app-no-record-found>
+                  </td>
+                </tr>
+
+                <tr *ngFor="let user of userList">
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="player-details.html"></a></td>
+                  <td>{{user?.name}}</td>
+                  <td>{{user?.email}}</td>
+                  <td>{{user?.mobile}}</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row mt-3 align-items-center">
+            <div class="row">
+              <div class="pagination">
+                <pagination-controls [maxSize]="5" (pageChange)="paginate($event)"></pagination-controls>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade show active" id="umpire" role="tabpanel" aria-labelledby="players-tab">
+          <div class="table-responsive  border-rounded p-2">
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Umpaire ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contact Number</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer">
+            <div class="row align-items-center justify-content-between">
+              <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 mob-mb1">
+                <div class="row align-items-center">
+                  <div class="col-col-lg-5 col-xl-5 col-6">
+                    <p class="mb-0">Record per page : </p>
+                  </div>
+                  <div class="col-lg-3 col-xl-3 col-6">
+                    <select class="form-select form-select-sm">
+                      <option>15</option>
+                      <option>30</option>
+                      <option>45</option>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 text-end mob-mb1">
+                <ul class="pagination m-auto justify-content-center">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 desktop-end mob-mb1">
+                <p class="mb-0">Showing 1-10 of 50 items</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade show active" id="groundowner" role="tabpanel" aria-labelledby="players-tab">
+          <div class="table-responsive  border-rounded p-2">
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Ground Owner ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contact Number</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="assets/img/avatars/avatar.jpg" class="avtar32 me-2" /> <a
+                      href="javascript:void(0)">@abhishek</a></td>
+                  <td>Abhishek</td>
+                  <td>abhishek@gmail.com</td>
+                  <td>9246256155</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="plauer1">
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer">
+            <div class="row align-items-center justify-content-between">
+              <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 mob-mb1">
+                <div class="row align-items-center">
+                  <div class="col-col-lg-5 col-xl-5 col-6">
+                    <p class="mb-0">Record per page : </p>
+                  </div>
+                  <div class="col-lg-3 col-xl-3 col-6">
+                    <select class="form-select form-select-sm">
+                      <option>15</option>
+                      <option>30</option>
+                      <option>45</option>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 text-end mob-mb1">
+                <ul class="pagination m-auto justify-content-center">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12 desktop-end mob-mb1">
+                <p class="mb-0">Showing 1-10 of 50 items</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

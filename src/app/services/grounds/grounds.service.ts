@@ -49,7 +49,7 @@ export class GroundsService {
     });
   }
 
-  getAllGroundStaff(): Observable<any> {
+  getAllGround(): Observable<any> {
     return this.httpClient.get<any>(this.baseUrl + GroundEndPoint.GET_ALL_GROUNDS, {
       headers: this.getHeader(),
     });

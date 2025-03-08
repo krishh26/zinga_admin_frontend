@@ -3,7 +3,7 @@ export const environment = {
 
   url: "http://localhost:3006",
   //  baseUrl : 'http://192.168.1.7:4100' ,
-  baseUrl: 'http://localhost:5000/api/v1'
+  baseUrl: 'https://api.zingacricket.co.in/api/v1'
 };
 
 

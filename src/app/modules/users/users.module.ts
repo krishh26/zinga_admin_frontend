@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
 import { paymentDetailsComponent } from './payment-details/payment-details.component';
 import { GameStatsComponent } from './game-stats/game-stats.component';
+import { SharedModule } from 'src/app/utility/shared/shared.module';
+// import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,7 +25,9 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule,
+    // NgxPaginationModule
   ]
 })
 export class UsersModule { }

@@ -18,8 +18,13 @@ import { FooterComponent } from './common/footer/footer.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './utility/shared/shared.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { APIInterceptor } from './utility/interceptor/ApiInterceptor';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './modules/auth/login/login.component';
+import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -27,7 +32,10 @@ import { APIInterceptor } from './utility/interceptor/ApiInterceptor';
     AppComponent,
     SideNavComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,22 +46,27 @@ import { APIInterceptor } from './utility/interceptor/ApiInterceptor';
     GroundsModule,
     NotificationsModule,
     PaymentsModule,
+    PaymentsModule,
     StatisticsModule,
+    HttpClientModule,
     SupportModule,
     TournamentsModule,
+    NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
       preventDuplicates: false,
     }),
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
-  providers: [ { provide: LocationStrategy, useClass: HashLocationStrategy },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: APIInterceptor,
-      multi: true
-    }],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: APIInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
