@@ -21,6 +21,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APIInterceptor } from './utility/interceptor/ApiInterceptor';
 
+
 @NgModule({
   declarations: [
     AppComponent,

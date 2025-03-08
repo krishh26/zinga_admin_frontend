@@ -10,6 +10,8 @@ const routes: Routes = [
   { path: 'payments', loadChildren: () => import('./modules/payments/payments.module').then(m => m.PaymentsModule) },
   { path: 'statistics', loadChildren: () => import('./modules/statistics/statistics.module').then(m => m.StatisticsModule) },
   { path: 'tournaments', loadChildren: () => import('./modules/tournaments/tournaments.module').then(m => m.TournamentsModule) },
+  { path: 'community', loadChildren: () => import('./modules/community/community.module').then(m => m.CommunityModule) },
+  { path: 'support', loadChildren: () => import('./modules/support/support.module').then(m => m.SupportModule) },
 ];
 
 

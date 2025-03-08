@@ -14725,6 +14725,7 @@
    transition: margin-left 0.35s ease-in-out, left 0.35s ease-in-out,
      margin-right 0.35s ease-in-out, right 0.35s ease-in-out;
      box-shadow: 5px 0 15px -2px rgba(0,0,0,.2);
+     height: 100%;
  }
  .sidebar,
  body[data-theme="dark"] .sidebar {

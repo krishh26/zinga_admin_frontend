@@ -1,0 +1,119 @@
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="card">	
+            <div class="card-header">
+                <div class="row justify-content-between">
+                    <div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-12">
+                        <div class="form-group mb-0 mob-mb1">
+                            <span class="input-icon-left"><i class="align-middle" data-feather="search"></i></span>
+                            <input type="text" class="form-control form-control-search" placeholder="Seach user">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-xl-2  col-md-4 col-sm-4 col-12">
+                        <div class="form-group mb-0 mob-mb1">
+                            <select class="form-select">
+                                <option>Select City</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-xl-2  col-md-4 col-sm-4 col-12">
+                        <div class="form-group mb-0 mob-mb1">
+                            <select class="form-select">
+                                <option>Date</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-4 col-12">
+                        <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="alltournaments-tab" data-bs-toggle="tab" data-bs-target="#alltournaments" type="button" role="tab" aria-controls="alltournaments" aria-selected="false">All</button>
+                              </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="livetournaments-tab" data-bs-toggle="tab" data-bs-target="#livetournaments" type="button" role="tab" aria-controls="livetournaments" aria-selected="true">Live</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="upcomingtournaments-tab" data-bs-toggle="tab" data-bs-target="#upcomingtournaments" type="button" role="tab" aria-controls="upcomingtournaments" aria-selected="false">Upcoming</button>
+                            </li>	
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="completedtournaments-tab" data-bs-toggle="tab" data-bs-target="#completedtournaments" type="button" role="tab" aria-controls="completedtournaments" aria-selected="false">Completed</button>
+                              </li>							
+                          </ul>	 
+                    </div>
+                    
+                </div>							
+            </div>					
+            <div class="card-body">							
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="alltournaments" role="tabpanel" aria-labelledby="alltournaments-tab">
+                        <h3><strong>23rd Nov 2024</strong></h3>		
+                        <div class="row align-items-center">
+                            <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12">
+                                <div class="Tournamentcard-black  mb-3">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-9">
+                                                <h3><strong>Warriors Cup</strong></h3>
+                                                <p class="mb-0"><i class="align-middle w-12 text-red" data-feather="map-pin"></i> Bangalore</p>
+                                                <p class="mb-0 p-600">Price Starting From: ₹2500*</p>
+                                                <p class="text-muted mb-0 p-600">3 games per team</p>
+                                                <p class="mb-0"><span class="text-danger">*</span> Winner gets a pass to commanders Cup</p>
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="../../../../assets/img/icons/warriors-cup.png"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12">
+                                <div class="Tournamentcard-blue mb-3">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-9">
+                                                <h3><strong>Commanders Cup</strong></h3>
+                                                <p class="mb-0"><i class="align-middle w-12 text-red" data-feather="map-pin"></i> Bangalore</p>
+                                                <p class="mb-0 p-600">&nbsp;</p>
+                                                <p class="text-muted mb-0 p-600">Min 3 games per team</p>
+                                                <p class="mb-0">Winner gets a Trophy & 5K Cash Prize</p>
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="../../../../assets/img/icons/warriors-cup.png"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12">
+                                <div class="Tournamentcard-red  mb-3">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-9">
+                                                <h3><strong>Kings Cup</strong></h3>
+                                                <p class="mb-0"><i class="align-middle w-12 text-red" data-feather="map-pin"></i> Bangalore</p>
+                                                <p class="mb-0 p-600">&nbsp;</p>
+                                                <p class="mb-0 p-600">Price Starting From:<span class="text-danger"> ₹5000*</span></p>
+                                                <p class="mb-0 text-muted">Min 3 games per team</p>
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="../../../../assets/img/icons/warriors-cup.png"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="livetournaments" role="tabpanel" aria-labelledby="livetournaments-tab">
+                        live events
+                    </div>
+                    <div class="tab-pane fade" id="upcomingtournaments" role="tabpanel" aria-labelledby="upcomingtournaments-tab">
+                        upcoming events
+                    </div>
+                    <div class="tab-pane fade" id="completedtournaments" role="tabpanel" aria-labelledby="completedtournaments-tab">
+                        completed events
+                    </div>                    
+                  </div>	
+            </div>						
+        </div>					
+    </div>
+</main>

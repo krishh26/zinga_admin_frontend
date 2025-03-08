@@ -1,3 +1,8 @@
+.w-12{width: 12px !important;}
+.p-12{
+    font-size: 12px !important;
+}
+
 /*=========================================
 Login CSS
 ==========================================*/
@@ -186,6 +191,17 @@ Custom class
     border-radius: 100px;
     object-fit: cover;
 }
+.avtar42{
+    width: 42px;
+    height: 42px;
+    border-radius: 100px;
+}
+.avtar42 img{
+    width: 42px;
+    height: 42px;
+    border-radius: 100px;
+    object-fit: cover;
+}
 .border-rounded{
     border-radius: 12px;
     border: 1px solid #D9D9D9;
@@ -199,7 +215,7 @@ Nav Tabs CSS
     font-size: 0.9rem;
     opacity: 0.6;
     border-radius: 100px;
-    margin-left: 15px;
+    margin-left: 5px;
 }
 
 .nav-tabs .nav-item.show .nav-link,
@@ -453,6 +469,29 @@ Card CSS
     border-bottom: 1px solid #E4E4E4;
 }
 
+.Tournamentcard-black {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(117deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 75%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 100%);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 6px;
+    min-height: 178px;
+}
+
+.Tournamentcard-blue {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(117deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 70%, rgba(0, 93, 229, 1) 70%, rgba(0, 93, 229, 1) 100%);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 6px;
+    min-height: 178px;
+}
+
+.Tournamentcard-red {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(117deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 70%, rgba(225, 59, 42, 1) 70%, rgba(225, 59, 42, 1) 100%);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 6px;
+    min-height: 178px;
+}
 /*====================================
 Freeze columns table
 =====================================*/
@@ -619,6 +658,16 @@ Proifle setting
 .text-bg-secondary{
     background-color: #16cdc7 !important;
 }
+
+/*==================================
+Table
+===================================*/
+.table-light {
+    background-color: #f5f7fb;
+  }
+  .table-light th{
+    padding: 0.75rem 1rem;
+  }
 /*==================================
   Media Query
   ====================================*/
@@ -634,8 +683,23 @@ Proifle setting
         border-radius: 24px;
         background-color: #F5F5F5;
     }
-
     .mob-mb1 {
-        margin-bottom: 1rem;
+        margin-bottom: 1rem !important;
     }
+    .content {
+        direction: ltr;
+        flex: 1;
+        max-width: 100vw;
+        padding: 0.75rem;
+        width: 100vw;
+    }
+    .nav-tabs .nav-link{
+        margin-left: 5px;
+        padding: 0.5rem 0.75rem;
+        margin-bottom: 10px;
+    }
+    .mob-p-0{
+        padding: 0px;
+    }
+   
 }
