@@ -6,6 +6,7 @@ import { PlayerDetailsComponent } from './player-details/player-details.componen
 import { paymentDetailsComponent } from './payment-details/payment-details.component';
 import { GameStatsComponent } from './game-stats/game-stats.component';
 import { SharedModule } from 'src/app/utility/shared/shared.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 // import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    // NgxPaginationModule
+    NgxPaginationModule
   ]
 })
 export class UsersModule { }
