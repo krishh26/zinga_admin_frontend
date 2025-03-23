@@ -40,8 +40,8 @@
                     <th scope="col">Owner</th>
                     <th scope="col">Email</th>
                     <th scope="col">Contact Number</th>
-                    <th scope="col"></th>
-
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -65,6 +65,11 @@
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="plauer1" checked>
                       </div>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-danger" (click)="deleteGround(item._id)">
+                        <i class="align-middle" data-feather="trash-2"></i> Delete
+                      </button>
                     </td>
                   </tr>
                 </tbody>

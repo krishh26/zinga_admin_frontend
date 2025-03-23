@@ -57,4 +57,24 @@ export class GroundListComponent {
     );
   }
 
+  deleteGround(id: string) {
+    if (confirm('Are you sure you want to delete this ground?')) {
+      this.showLoader = true;
+      this.groundService.deleteGround(id).subscribe(
+        (response) => {
+          this.showLoader = false;
+          if (response?.status) {
+            this.notificationService.showSuccess('Ground deleted successfully');
+            this.getAllGroundLists(); // Refresh the list
+          } else {
+            this.notificationService.showError(response?.message || 'Failed to delete ground');
+          }
+        },
+        (error) => {
+          this.showLoader = false;
+          this.notificationService.showError(error?.message || 'An error occurred while deleting ground');
+        }
+      );
+    }
+  }
 }

@@ -73,9 +73,10 @@ export class GroundsService {
     );
   }
 
-  deleteGround(): Observable<any> {
+  deleteGround(id: string): Observable<any> {
+    const url = this.baseUrl + GroundEndPoint.DELETE_GROUND.replace(':id', id);
     return this.httpClient
-      .delete<any>(this.baseUrl + GroundEndPoint.DELETE_GROUND);
+      .delete<any>(url, { headers: this.getHeader() });
   }
 
 
