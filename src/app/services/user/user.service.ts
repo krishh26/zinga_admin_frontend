@@ -9,7 +9,8 @@ export enum UserEndPoint {
   UPDATE_USER = '/user/update',
   REGISTER_USER = '/user/member',
   LOGIN_USER = '/user/auth',
-  RESET_PASSWORD = '/user/reset-password'
+  RESET_PASSWORD = '/user/reset-password',
+  DELETE_USER = '/user/delete/:id'
 }
 
 @Injectable({
@@ -71,6 +72,11 @@ export class UserService {
     return this.httpClient.post<any>(this.baseUrl + UserEndPoint.UPDATE_USER, payload,
       { headers: this.getHeader() }
     );
+  }
+
+  deleteUser(id: string): Observable<any> {
+    const url = this.baseUrl + UserEndPoint.DELETE_USER.replace(':id', id);
+    return this.httpClient.delete<any>(url, { headers: this.getHeader() });
   }
 
 }

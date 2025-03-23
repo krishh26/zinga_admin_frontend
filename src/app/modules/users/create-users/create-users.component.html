@@ -1,0 +1,76 @@
+<div class="wrapper">
+  <div class="main">
+    <main class="content">
+      <div class="container-fluid p-0">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Create User</h5>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Name*</label>
+                  <input type="text" class="form-control" formControlName="name" placeholder="Enter name">
+                  <div *ngIf="f['name'].touched && f['name'].invalid" class="text-danger">
+                    <small *ngIf="f['name'].errors?.['required']">Name is required.</small>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Email*</label>
+                  <input type="email" class="form-control" formControlName="email" placeholder="Enter email">
+                  <div *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
+                    <small *ngIf="f['email'].errors?.['required']">Email is required.</small>
+                    <small *ngIf="f['email'].errors?.['email']">Please enter a valid email address.</small>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Password*</label>
+                  <input type="password" class="form-control" formControlName="password" placeholder="Enter password">
+                  <div *ngIf="f['password'].touched && f['password'].invalid" class="text-danger">
+                    <small *ngIf="f['password'].errors?.['required']">Password is required.</small>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Mobile Number*</label>
+                  <input type="text" class="form-control" formControlName="mobile" placeholder="Enter mobile number">
+                  <div *ngIf="f['mobile'].touched && f['mobile'].invalid" class="text-danger">
+                    <small *ngIf="f['mobile'].errors?.['required']">Mobile number is required.</small>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Role*</label>
+                  <select class="form-select" formControlName="role">
+                    <option value="">Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="ground_staff">Ground Staff</option>
+                    <option value="ground_owner">Ground Owner</option>
+                    <option value="player">Player</option>
+                    <option value="umpire">Umpire</option>
+                  </select>
+                  <div *ngIf="f['role'].touched && f['role'].invalid" class="text-danger">
+                    <small *ngIf="f['role'].errors?.['required']">Role is required.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary me-2" [disabled]="userForm.invalid || isSubmitting">
+                    <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                    Create User
+                  </button>
+                  <button type="button" class="btn btn-secondary" [routerLink]="['/user/home']">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

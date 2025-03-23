@@ -56,5 +56,25 @@ export class UsersListComponent {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  deleteUser(id: string) {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.showLoader = true;
+      this.userService.deleteUser(id).subscribe(
+        (response) => {
+          this.showLoader = false;
+          if (response?.status) {
+            this.notificationService.showSuccess('User deleted successfully');
+            this.getUserLists(); // Refresh the list
+          } else {
+            this.notificationService.showError(response?.message || 'Failed to delete user');
+          }
+        },
+        (error) => {
+          this.showLoader = false;
+          this.notificationService.showError(error?.message || 'An error occurred while deleting user');
+        }
+      );
+    }
+  }
 
 }

@@ -7,6 +7,8 @@ import { paymentDetailsComponent } from './payment-details/payment-details.compo
 import { GameStatsComponent } from './game-stats/game-stats.component';
 import { SharedModule } from 'src/app/utility/shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CreateUsersComponent } from './create-users/create-users.component';
+import { ReactiveFormsModule } from '@angular/forms';
 // import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
@@ -14,7 +16,8 @@ const routes: Routes = [
   { path: 'home', component: UsersListComponent },
   { path: 'player-details', component: PlayerDetailsComponent },
   { path: 'payment-details', component: paymentDetailsComponent},
-  { path: 'game-stats', component: GameStatsComponent}
+  { path: 'game-stats', component: GameStatsComponent},
+  { path: 'create-users', component: CreateUsersComponent}
 ];
 
 @NgModule({
@@ -22,13 +25,15 @@ const routes: Routes = [
     UsersListComponent,
     PlayerDetailsComponent,
     paymentDetailsComponent,
-    GameStatsComponent
+    GameStatsComponent,
+    CreateUsersComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ]
 })
 export class UsersModule { }
