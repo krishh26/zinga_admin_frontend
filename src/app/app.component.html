@@ -1,7 +1,7 @@
 <div class="wrapper">
-  <app-side-nav></app-side-nav>
-  <div class="main">
-    <nav class="navbar navbar-expand navbar-light navbar-bg">
+  <app-side-nav *ngIf="!isAuthRoute()"></app-side-nav>
+  <div class="main" [ngClass]="{'full-width': isAuthRoute()}">
+    <nav class="navbar navbar-expand navbar-light navbar-bg" *ngIf="!isAuthRoute()">
       <a class="sidebar-toggle js-sidebar-toggle">
         <i class="hamburger align-self-center"></i>
       </a>
@@ -21,7 +21,7 @@
                 </ul>
             </div>
         </nav>
-        <main class="content p-0">
+        <main class="content p-0" [ngClass]="{'auth-content': isAuthRoute()}">
             <router-outlet></router-outlet>
         </main>
     </div>

@@ -14,7 +14,7 @@ import { BaseLogin } from 'src/app/utility/shared/common/base-login';
 export class LoginComponent extends BaseLogin implements OnInit {
   loginForm: FormGroup;
   submitted = false;
-  // showPassword = false;
+  override showPassword = false;
   showLoader: boolean = false;
   loginUser: any;
   tokenDecode: any;
@@ -32,11 +32,15 @@ export class LoginComponent extends BaseLogin implements OnInit {
 
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]], //Validators.minLength(6)
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // Check if user is already logged in
+    if (this.loginUser) {
+      this.router.navigate(['/user/home']);
+    }
   }
 
   // Getter for easy access to form controls in the template
@@ -77,8 +81,8 @@ export class LoginComponent extends BaseLogin implements OnInit {
     }
   }
 
+  // Use the password toggle method for template
   togglePassword() {
-    console.log('this is called');
-    this.showPassword = !this.showPassword;
+    this.showHidePass();
   }
 }
