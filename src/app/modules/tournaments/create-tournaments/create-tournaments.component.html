@@ -1,223 +1,270 @@
 <div class="container-fluid p-0">
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title mb-0">Create Tournament</h5>
-        </div>
-        <div class="card-body">
-            <form [formGroup]="tournamentForm" (ngSubmit)="onSubmit()">
-                <!-- Basic Information Section -->
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <h6 class="mb-3">Basic Information</h6>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-3">
-                        <label for="seriesName" class="form-label">Series Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="seriesName" formControlName="seriesName"
-                            [ngClass]="{'is-invalid': tournamentForm.get('seriesName')?.touched && tournamentForm.get('seriesName')?.invalid}">
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('seriesName')?.touched && tournamentForm.get('seriesName')?.errors?.['required']">
-                            Series name is required
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-3">
-                        <label for="tournamentType" class="form-label">Tournament Type <span class="text-danger">*</span></label>
-                        <select class="form-select" id="tournamentType" formControlName="tournamentType"
-                            [ngClass]="{'is-invalid': tournamentForm.get('tournamentType')?.touched && tournamentForm.get('tournamentType')?.invalid}">
-                            <option *ngFor="let type of tournamentTypes" [value]="type">{{type}}</option>
-                        </select>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('tournamentType')?.touched && tournamentForm.get('tournamentType')?.errors?.['required']">
-                            Tournament type is required
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-3">
-                        <label for="startDate" class="form-label">Start Date <span class="text-danger">*</span></label>
-                        <input type="datetime-local" class="form-control" id="startDate" formControlName="startDate"
-                            [ngClass]="{'is-invalid': tournamentForm.get('startDate')?.touched && tournamentForm.get('startDate')?.invalid}">
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('startDate')?.touched && tournamentForm.get('startDate')?.errors?.['required']">
-                            Start date is required
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-3">
-                        <label for="teamLimit" class="form-label">Team Limit <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" id="teamLimit" formControlName="teamLimit" min="2"
-                            [ngClass]="{'is-invalid': tournamentForm.get('teamLimit')?.touched && tournamentForm.get('teamLimit')?.invalid}">
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('teamLimit')?.touched && tournamentForm.get('teamLimit')?.errors?.['required']">
-                            Team limit is required
-                        </div>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('teamLimit')?.touched && tournamentForm.get('teamLimit')?.errors?.['min']">
-                            Team limit must be at least 2
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-3">
-                        <label for="cost" class="form-label">Cost (₹) <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" id="cost" formControlName="cost" min="0"
-                            [ngClass]="{'is-invalid': tournamentForm.get('cost')?.touched && tournamentForm.get('cost')?.invalid}">
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('cost')?.touched && tournamentForm.get('cost')?.errors?.['required']">
-                            Cost is required
-                        </div>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('cost')?.touched && tournamentForm.get('cost')?.errors?.['min']">
-                            Cost cannot be negative
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-3">
-                        <label for="format" class="form-label">Format <span class="text-danger">*</span></label>
-                        <select class="form-select" id="format" formControlName="format"
-                            [ngClass]="{'is-invalid': tournamentForm.get('format')?.touched && tournamentForm.get('format')?.invalid}">
-                            <option *ngFor="let format of formats" [value]="format">{{format}}</option>
-                        </select>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('format')?.touched && tournamentForm.get('format')?.errors?.['required']">
-                            Format is required
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Venues Section -->
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <h6 class="mb-3">Venues</h6>
-                    </div>
-                    <div class="col-12 mb-3">
-                        <label for="venues" class="form-label">Select Venues <span class="text-danger">*</span></label>
-                        <select multiple class="form-select" id="venues" formControlName="venues" [compareWith]="compareObjects"
-                            [ngClass]="{'is-invalid': tournamentForm.get('venues')?.touched && tournamentForm.get('venues')?.invalid}">
-                            <option *ngFor="let venue of venues" [value]="venue._id">{{venue.name}}</option>
-                        </select>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('venues')?.touched && tournamentForm.get('venues')?.errors?.['required']">
-                            At least one venue is required
-                        </div>
-                        <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple venues</small>
-                    </div>
-                </div>
-
-                <!-- Match Settings Section -->
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <h6 class="mb-3">Match Settings</h6>
-                    </div>
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <label for="matchStartTime" class="form-label">Match Start Time <span class="text-danger">*</span></label>
-                        <input type="time" class="form-control" id="matchStartTime" formControlName="matchStartTime"
-                            [ngClass]="{'is-invalid': tournamentForm.get('matchStartTime')?.touched && tournamentForm.get('matchStartTime')?.invalid}">
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('matchStartTime')?.touched && tournamentForm.get('matchStartTime')?.errors?.['required']">
-                            Match start time is required
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <label for="matchDuration" class="form-label">Match Duration (minutes) <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" id="matchDuration" formControlName="matchDuration" min="30"
-                            [ngClass]="{'is-invalid': tournamentForm.get('matchDuration')?.touched && tournamentForm.get('matchDuration')?.invalid}">
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('matchDuration')?.touched && tournamentForm.get('matchDuration')?.errors?.['required']">
-                            Match duration is required
-                        </div>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('matchDuration')?.touched && tournamentForm.get('matchDuration')?.errors?.['min']">
-                            Match duration must be at least 30 minutes
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <label for="matchGapHours" class="form-label">Gap Between Matches (hours) <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" id="matchGapHours" formControlName="matchGapHours" min="0"
-                            [ngClass]="{'is-invalid': tournamentForm.get('matchGapHours')?.touched && tournamentForm.get('matchGapHours')?.invalid}">
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('matchGapHours')?.touched && tournamentForm.get('matchGapHours')?.errors?.['required']">
-                            Gap between matches is required
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <label for="matchType" class="form-label">Match Type <span class="text-danger">*</span></label>
-                        <select class="form-select" id="matchType" formControlName="matchType"
-                            [ngClass]="{'is-invalid': tournamentForm.get('matchType')?.touched && tournamentForm.get('matchType')?.invalid}">
-                            <option *ngFor="let type of matchTypes" [value]="type">{{type}}</option>
-                        </select>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('matchType')?.touched && tournamentForm.get('matchType')?.errors?.['required']">
-                            Match type is required
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <label for="oversPerInnings" class="form-label">Overs Per Innings <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" id="oversPerInnings" formControlName="oversPerInnings" min="1"
-                            [ngClass]="{'is-invalid': tournamentForm.get('oversPerInnings')?.touched && tournamentForm.get('oversPerInnings')?.invalid}">
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('oversPerInnings')?.touched && tournamentForm.get('oversPerInnings')?.errors?.['required']">
-                            Overs per innings is required
-                        </div>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('oversPerInnings')?.touched && tournamentForm.get('oversPerInnings')?.errors?.['min']">
-                            Overs per innings must be at least 1
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <label for="oversPerBowler" class="form-label">Overs Per Bowler <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" id="oversPerBowler" formControlName="oversPerBowler" min="1"
-                            [ngClass]="{'is-invalid': tournamentForm.get('oversPerBowler')?.touched && tournamentForm.get('oversPerBowler')?.invalid}">
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('oversPerBowler')?.touched && tournamentForm.get('oversPerBowler')?.errors?.['required']">
-                            Overs per bowler is required
-                        </div>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('oversPerBowler')?.touched && tournamentForm.get('oversPerBowler')?.errors?.['min']">
-                            Overs per bowler must be at least 1
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <label for="ballType" class="form-label">Ball Type <span class="text-danger">*</span></label>
-                        <select class="form-select" id="ballType" formControlName="ballType"
-                            [ngClass]="{'is-invalid': tournamentForm.get('ballType')?.touched && tournamentForm.get('ballType')?.invalid}">
-                            <option *ngFor="let type of ballTypes" [value]="type">{{type | titlecase}}</option>
-                        </select>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('ballType')?.touched && tournamentForm.get('ballType')?.errors?.['required']">
-                            Ball type is required
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <label for="pitchType" class="form-label">Pitch Type <span class="text-danger">*</span></label>
-                        <select class="form-select" id="pitchType" formControlName="pitchType"
-                            [ngClass]="{'is-invalid': tournamentForm.get('pitchType')?.touched && tournamentForm.get('pitchType')?.invalid}">
-                            <option *ngFor="let type of pitchTypes" [value]="type">{{type | titlecase}}</option>
-                        </select>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('pitchType')?.touched && tournamentForm.get('pitchType')?.errors?.['required']">
-                            Pitch type is required
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Umpires Section -->
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <h6 class="mb-3">Umpires</h6>
-                    </div>
-                    <div class="col-12 mb-3">
-                        <label for="umpires" class="form-label">Select Umpires <span class="text-danger">*</span></label>
-                        <select multiple class="form-select" id="umpires" formControlName="umpires" [compareWith]="compareObjects"
-                            [ngClass]="{'is-invalid': tournamentForm.get('umpires')?.touched && tournamentForm.get('umpires')?.invalid}">
-                            <option *ngFor="let umpire of umpires" [value]="umpire._id">{{umpire.name}}</option>
-                        </select>
-                        <div class="invalid-feedback" *ngIf="tournamentForm.get('umpires')?.touched && tournamentForm.get('umpires')?.errors?.['required']">
-                            At least one umpire is required
-                        </div>
-                        <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple umpires</small>
-                    </div>
-                </div>
-
-                <!-- Additional Settings -->
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <h6 class="mb-3">Additional Settings</h6>
-                    </div>
-                    <div class="col-12 mb-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="stayOnScreen" formControlName="stayOnScreen">
-                            <label class="form-check-label" for="stayOnScreen">
-                                Stay on screen after submission
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Submit Button -->
-                <div class="row">
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
-                            <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                            Create Tournament
-                        </button>
-                        <button type="button" class="btn btn-outline-secondary ms-2" routerLink="/tournaments/tournament">Cancel</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title mb-0">Create Tournament</h5>
     </div>
+    <div class="card-body">
+      <form [formGroup]="tournamentForm" (ngSubmit)="onSubmit()" class="responsive-form">
+        <!-- Basic Information Section -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <h6 class="mb-3">Basic Information</h6>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-3">
+            <label for="seriesName" class="form-label">Series Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="seriesName" formControlName="seriesName"
+              [ngClass]="{'is-invalid': tournamentForm.get('seriesName')?.touched && tournamentForm.get('seriesName')?.invalid}">
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('seriesName')?.touched && tournamentForm.get('seriesName')?.errors?.['required']">
+              Series name is required
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-3">
+            <label for="tournamentType" class="form-label">Tournament Type <span class="text-danger">*</span></label>
+            <select class="form-select" id="tournamentType" formControlName="tournamentType"
+              [ngClass]="{'is-invalid': tournamentForm.get('tournamentType')?.touched && tournamentForm.get('tournamentType')?.invalid}">
+              <option *ngFor="let type of tournamentTypes" [value]="type">{{type}}</option>
+            </select>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('tournamentType')?.touched && tournamentForm.get('tournamentType')?.errors?.['required']">
+              Tournament type is required
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-3">
+            <label for="startDate" class="form-label">Start Date <span class="text-danger">*</span></label>
+            <input type="datetime-local" class="form-control" id="startDate" formControlName="startDate"
+              [ngClass]="{'is-invalid': tournamentForm.get('startDate')?.touched && tournamentForm.get('startDate')?.invalid}">
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('startDate')?.touched && tournamentForm.get('startDate')?.errors?.['required']">
+              Start date is required
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-3">
+            <label for="teamLimit" class="form-label">Team Limit <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="teamLimit" formControlName="teamLimit" min="2"
+              [ngClass]="{'is-invalid': tournamentForm.get('teamLimit')?.touched && tournamentForm.get('teamLimit')?.invalid}">
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('teamLimit')?.touched && tournamentForm.get('teamLimit')?.errors?.['required']">
+              Team limit is required
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('teamLimit')?.touched && tournamentForm.get('teamLimit')?.errors?.['min']">
+              Team limit must be at least 2
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-3">
+            <label for="cost" class="form-label">Cost (₹) <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="cost" formControlName="cost" min="0"
+              [ngClass]="{'is-invalid': tournamentForm.get('cost')?.touched && tournamentForm.get('cost')?.invalid}">
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('cost')?.touched && tournamentForm.get('cost')?.errors?.['required']">
+              Cost is required
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('cost')?.touched && tournamentForm.get('cost')?.errors?.['min']">
+              Cost cannot be negative
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-3">
+            <label for="format" class="form-label">Format <span class="text-danger">*</span></label>
+            <select class="form-select" id="format" formControlName="format"
+              [ngClass]="{'is-invalid': tournamentForm.get('format')?.touched && tournamentForm.get('format')?.invalid}">
+              <option *ngFor="let format of formats" [value]="format">{{format}}</option>
+            </select>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('format')?.touched && tournamentForm.get('format')?.errors?.['required']">
+              Format is required
+            </div>
+          </div>
+        </div>
+
+        <!-- Venues Section -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <h6 class="mb-3">Venues</h6>
+          </div>
+          <div class="col-12 mb-3">
+            <label for="venues" class="form-label">Select Venues <span class="text-danger">*</span></label>
+            <ng-select [items]="venues" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="name"
+              bindValue="_id" placeholder="Select venues" formControlName="venues" [loading]="isLoadingVenues"
+              [clearable]="true" class="form-control p-0 border-0"
+              [ngClass]="{'is-invalid': tournamentForm.get('venues')?.touched && tournamentForm.get('venues')?.invalid}">
+              <ng-template ng-option-tmp let-item="item">
+                <div class="d-flex align-items-center">
+                  <span>{{ item.name }}</span>
+                </div>
+              </ng-template>
+              <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                <div class="ng-value" *ngFor="let item of items">
+                  <span class="ng-value-label">{{ item.name }}</span>
+                  <span class="ng-value-icon right" (click)="clear(item)">×</span>
+                </div>
+              </ng-template>
+            </ng-select>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('venues')?.touched && tournamentForm.get('venues')?.errors?.['required']">
+              At least one venue is required
+            </div>
+          </div>
+        </div>
+
+        <!-- Match Settings Section -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <h6 class="mb-3">Match Settings</h6>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 mb-3">
+            <label for="matchStartTime" class="form-label">Match Start Time <span class="text-danger">*</span></label>
+            <input type="time" class="form-control" id="matchStartTime" formControlName="matchStartTime"
+              [ngClass]="{'is-invalid': tournamentForm.get('matchStartTime')?.touched && tournamentForm.get('matchStartTime')?.invalid}">
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('matchStartTime')?.touched && tournamentForm.get('matchStartTime')?.errors?.['required']">
+              Match start time is required
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 mb-3">
+            <label for="matchDuration" class="form-label">Match Duration (minutes) <span
+                class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="matchDuration" formControlName="matchDuration" min="30"
+              [ngClass]="{'is-invalid': tournamentForm.get('matchDuration')?.touched && tournamentForm.get('matchDuration')?.invalid}">
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('matchDuration')?.touched && tournamentForm.get('matchDuration')?.errors?.['required']">
+              Match duration is required
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('matchDuration')?.touched && tournamentForm.get('matchDuration')?.errors?.['min']">
+              Match duration must be at least 30 minutes
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 mb-3">
+            <label for="matchGapHours" class="form-label">Gap Between Matches (hours) <span
+                class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="matchGapHours" formControlName="matchGapHours" min="0"
+              [ngClass]="{'is-invalid': tournamentForm.get('matchGapHours')?.touched && tournamentForm.get('matchGapHours')?.invalid}">
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('matchGapHours')?.touched && tournamentForm.get('matchGapHours')?.errors?.['required']">
+              Gap between matches is required
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 mb-3">
+            <label for="matchType" class="form-label">Match Type <span class="text-danger">*</span></label>
+            <select class="form-select" id="matchType" formControlName="matchType"
+              [ngClass]="{'is-invalid': tournamentForm.get('matchType')?.touched && tournamentForm.get('matchType')?.invalid}">
+              <option *ngFor="let type of matchTypes" [value]="type">{{type}}</option>
+            </select>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('matchType')?.touched && tournamentForm.get('matchType')?.errors?.['required']">
+              Match type is required
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 mb-3">
+            <label for="oversPerInnings" class="form-label">Overs Per Innings <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="oversPerInnings" formControlName="oversPerInnings" min="1"
+              [ngClass]="{'is-invalid': tournamentForm.get('oversPerInnings')?.touched && tournamentForm.get('oversPerInnings')?.invalid}">
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('oversPerInnings')?.touched && tournamentForm.get('oversPerInnings')?.errors?.['required']">
+              Overs per innings is required
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('oversPerInnings')?.touched && tournamentForm.get('oversPerInnings')?.errors?.['min']">
+              Overs per innings must be at least 1
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 mb-3">
+            <label for="oversPerBowler" class="form-label">Overs Per Bowler <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="oversPerBowler" formControlName="oversPerBowler" min="1"
+              [ngClass]="{'is-invalid': tournamentForm.get('oversPerBowler')?.touched && tournamentForm.get('oversPerBowler')?.invalid}">
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('oversPerBowler')?.touched && tournamentForm.get('oversPerBowler')?.errors?.['required']">
+              Overs per bowler is required
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('oversPerBowler')?.touched && tournamentForm.get('oversPerBowler')?.errors?.['min']">
+              Overs per bowler must be at least 1
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 mb-3">
+            <label for="ballType" class="form-label">Ball Type <span class="text-danger">*</span></label>
+            <select class="form-select" id="ballType" formControlName="ballType"
+              [ngClass]="{'is-invalid': tournamentForm.get('ballType')?.touched && tournamentForm.get('ballType')?.invalid}">
+              <option *ngFor="let type of ballTypes" [value]="type">{{type | titlecase}}</option>
+            </select>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('ballType')?.touched && tournamentForm.get('ballType')?.errors?.['required']">
+              Ball type is required
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 mb-3">
+            <label for="pitchType" class="form-label">Pitch Type <span class="text-danger">*</span></label>
+            <select class="form-select" id="pitchType" formControlName="pitchType"
+              [ngClass]="{'is-invalid': tournamentForm.get('pitchType')?.touched && tournamentForm.get('pitchType')?.invalid}">
+              <option *ngFor="let type of pitchTypes" [value]="type">{{type | titlecase}}</option>
+            </select>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('pitchType')?.touched && tournamentForm.get('pitchType')?.errors?.['required']">
+              Pitch type is required
+            </div>
+          </div>
+        </div>
+
+        <!-- Umpires Section -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <h6 class="mb-3">Umpires</h6>
+          </div>
+          <div class="col-12 mb-3">
+            <label for="umpires" class="form-label">Select Umpires <span class="text-danger">*</span></label>
+            <ng-select [items]="umpires" [closeOnSelect]="false" [searchable]="true" bindLabel="name"
+              bindValue="_id" placeholder="Select umpires" formControlName="umpires" [clearable]="true"
+              class="form-control p-0 border-0"
+              [ngClass]="{'is-invalid': tournamentForm.get('umpires')?.touched && tournamentForm.get('umpires')?.invalid}">
+              <ng-template ng-option-tmp let-item="item">
+                <div class="d-flex align-items-center">
+                  <span>{{ item.name }}</span>
+                </div>
+              </ng-template>
+              <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                <div class="ng-value" *ngFor="let item of items">
+                  <span class="ng-value-label">{{ item.name }}</span>
+                  <span class="ng-value-icon right" (click)="clear(item)">×</span>
+                </div>
+              </ng-template>
+            </ng-select>
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('umpires')?.touched && tournamentForm.get('umpires')?.errors?.['required']">
+              At least one umpire is required
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Settings -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <h6 class="mb-3">Additional Settings</h6>
+          </div>
+          <div class="col-12 mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="stayOnScreen" formControlName="stayOnScreen">
+              <label class="form-check-label" for="stayOnScreen">
+                Stay on screen after submission
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+              <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"
+                aria-hidden="true"></span>
+              Create Tournament
+            </button>
+            <button type="button" class="btn btn-outline-secondary ms-2"
+              routerLink="/tournaments/tournament">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

@@ -1,10 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 
 export enum UserEndPoint {
   USER_LIST = '/user/member',
+  USER = '/user',
   ADD_USER = '/user/member',
   UPDATE_USER = '/user/update',
   REGISTER_USER = '/user/member',
@@ -77,6 +78,14 @@ export class UserService {
   deleteUser(id: string): Observable<any> {
     const url = this.baseUrl + UserEndPoint.DELETE_USER.replace(':id', id);
     return this.httpClient.delete<any>(url, { headers: this.getHeader() });
+  }
+
+  getUsersByRole(role: string): Observable<any> {
+    const params = new HttpParams().set('role', role);
+    return this.httpClient.get<any>(this.baseUrl + UserEndPoint.USER, {
+      headers: this.getHeader(),
+      params: params
+    });
   }
 
 }

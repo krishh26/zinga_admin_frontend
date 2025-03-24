@@ -16,6 +16,7 @@ export class CreateTournamentsComponent implements OnInit {
   venues: any[] = [];
   umpires: any[] = [];
   isSubmitting = false;
+  isLoadingVenues = false;
   tournamentTypes = ['Warriors Cup', 'Champions League', 'Premier League', 'Other'];
   formats = ['T20', 'ODI', 'Test', 'T10'];
   matchTypes = ['T20', 'ODI', 'Test', 'T10'];
@@ -57,25 +58,27 @@ export class CreateTournamentsComponent implements OnInit {
   }
 
   loadVenues(): void {
+    this.isLoadingVenues = true;
     this.groundsService.getAllGround().subscribe({
       next: (response) => {
         if (response && response.data) {
-          this.venues = response.data;
+          this.venues = response?.data?.grounds;
         }
+        this.isLoadingVenues = false;
       },
       error: (error) => {
         console.error('Error loading venues:', error);
         this.notificationService.showError('Failed to load venues');
+        this.isLoadingVenues = false;
       }
     });
   }
 
   loadUmpires(): void {
-    this.userService.getUserList().subscribe({
+    this.userService.getUsersByRole('umpire').subscribe({
       next: (response) => {
         if (response && response.data) {
-          // Filter users who are umpires (assuming there's a role property)
-          this.umpires = response.data.filter((user: any) => user.role === 'umpire');
+          this.umpires = response.data;
         }
       },
       error: (error) => {
