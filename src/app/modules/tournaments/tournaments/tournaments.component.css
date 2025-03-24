@@ -1,0 +1,55 @@
+/* Table Responsive Styles */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+}
+
+/* Make table more readable on small screens */
+@media (max-width: 768px) {
+    .table td, .table th {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    /* Hide less important columns on mobile */
+    .table .hide-on-mobile {
+        display: none;
+    }
+}
+
+/* Status Badge Styles */
+.badge {
+    padding: 0.4em 0.6em;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+/* Venue List Styles */
+.venue-list {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+    .venue-list {
+        max-width: 150px;
+    }
+}
+
+/* Delete Button Styles */
+.btn-outline-danger {
+    padding: 0.25rem 0.5rem;
+    line-height: 1;
+}
+
+.btn-outline-danger i {
+    width: 16px;
+    height: 16px;
+}

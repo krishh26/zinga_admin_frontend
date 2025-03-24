@@ -7,6 +7,30 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { UserService } from 'src/app/services/user/user.service';
 import { TournamentService } from 'src/app/services/tournaments/tournament.service';
 
+interface Tournament {
+  _id: string;
+  tournamentId: string;
+  seriesName: string;
+  tournamentType: string;
+  status: string;
+  startDate: string;
+  teamLimit: number;
+  venues: Array<{
+    _id: string;
+    name: string;
+    address1: string;
+    city: string;
+  }>;
+  cost: number;
+  registeredTeams: Array<any>;
+}
+
+interface ApiResponse {
+  status: boolean;
+  message: string;
+  data: Tournament[];
+  totalRecords?: number;
+}
 
 @Component({
   selector: 'app-tournaments',
@@ -16,7 +40,7 @@ import { TournamentService } from 'src/app/services/tournaments/tournament.servi
 export class TournamentsComponent {
 
   showLoader: boolean = false;
-  tournamentAllList: any = [];
+  tournamentAllList: Tournament[] = [];
   page: number = pagination.page;
   pagesize = pagination.itemsPerPage;
   totalRecords: number = pagination.totalRecords;
@@ -55,25 +79,65 @@ export class TournamentsComponent {
   }
 
   navigateToCreateTournament() {
-    // The route is defined in the child routes, so we need to use the correct path
     this.router.navigate(['../create-tournament'], { relativeTo: this.route });
   }
 
   getAllTournamentsByStatus(status: string) {
     this.showLoader = true;
-    this.tournametservice.getTournamentList(status).subscribe((response: any) => {
+    this.tournametservice.getTournamentList(status).subscribe((response: ApiResponse) => {
       this.showLoader = false;
       if (response?.status) {
         this.tournamentAllList = response.data;
-        this.totalRecords = response?.totalRecords;
+        this.totalRecords = response?.totalRecords || 0;
       } else {
         this.notificationService.showError(response?.message);
       }
     },
-      (error) => {
+      (error: any) => {
         this.notificationService.showError(error?.message);
         this.showLoader = false;
       }
     );
+  }
+
+  getStatusBadgeClass(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'live':
+        return 'success';
+      case 'upcoming':
+        return 'warning';
+      case 'completed':
+        return 'secondary';
+      default:
+        return 'primary';
+    }
+  }
+
+  viewTournament(tournament: Tournament) {
+    // Navigate to tournament details page
+    this.router.navigate(['../tournament-details', tournament._id], { relativeTo: this.route });
+  }
+
+  editTournament(tournament: Tournament) {
+    // Navigate to edit tournament page
+    this.router.navigate(['../edit-tournament', tournament._id], { relativeTo: this.route });
+  }
+
+  deleteTournament(tournament: Tournament) {
+    if (confirm('Are you sure you want to delete this tournament?')) {
+      this.tournametservice.deleteTournament(tournament._id).subscribe({
+        next: (response: ApiResponse) => {
+          if (response?.status) {
+            this.notificationService.showSuccess('Tournament deleted successfully');
+            this.getAllTournamentsByStatus(this.currentStatus);
+          } else {
+            this.notificationService.showError(response?.message);
+          }
+        },
+        error: (error: any) => {
+          this.notificationService.showError(error?.message || 'Failed to delete tournament');
+        }
+      });
+    }
   }
 }

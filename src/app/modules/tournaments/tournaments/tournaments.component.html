@@ -37,115 +37,67 @@
                         <ul class="nav nav-tabs border-0 justify-content-md-end justify-content-center flex-nowrap" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" [class.active]="currentStatus === 'all'" id="alltournaments-tab" (click)="navigateWithStatus('all')" data-bs-toggle="tab" data-bs-target="#alltournaments" type="button" role="tab" aria-controls="alltournaments" aria-selected="false">All</button>
-                              </li>
-                            <li class="nav-item" role="presentation">
-                              <button class="nav-link" [class.active]="currentStatus === 'live'" id="livetournaments-tab" (click)="navigateWithStatus('live')" data-bs-toggle="tab" data-bs-target="#livetournaments" type="button" role="tab" aria-controls="livetournaments" aria-selected="true">Live</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                              <button class="nav-link" [class.active]="currentStatus === 'upcoming'" id="upcomingtournaments-tab" (click)="navigateWithStatus('upcoming')" data-bs-toggle="tab" data-bs-target="#upcomingtournaments" type="button" role="tab" aria-controls="upcomingtournaments" aria-selected="false">Upcoming</button>
+                                <button class="nav-link" [class.active]="currentStatus === 'live'" id="livetournaments-tab" (click)="navigateWithStatus('live')" data-bs-toggle="tab" data-bs-target="#livetournaments" type="button" role="tab" aria-controls="livetournaments" aria-selected="true">Live</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" [class.active]="currentStatus === 'upcoming'" id="upcomingtournaments-tab" (click)="navigateWithStatus('upcoming')" data-bs-toggle="tab" data-bs-target="#upcomingtournaments" type="button" role="tab" aria-controls="upcomingtournaments" aria-selected="false">Upcoming</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" [class.active]="currentStatus === 'completed'" id="completedtournaments-tab" (click)="navigateWithStatus('completed')" data-bs-toggle="tab" data-bs-target="#completedtournaments" type="button" role="tab" aria-controls="completedtournaments" aria-selected="false">Completed</button>
-                              </li>
-                          </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade" [class.show]="currentStatus === 'all'" [class.active]="currentStatus === 'all'" id="alltournaments" role="tabpanel" aria-labelledby="alltournaments-tab">
-                        <h3><strong>23rd Nov 2024</strong></h3>
-                        <div class="row align-items-center">
-                            <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12" *ngFor="let tournament of tournamentAllList">
-                                <div class="Tournamentcard-black mb-3">
-                                    <div class="card-body">
-                                        <div class="row align-items-center">
-                                            <div class="col-9">
-                                                <h3><strong>{{tournament.name}}</strong></h3>
-                                                <p class="mb-0"><i class="align-middle w-12 text-red" data-feather="map-pin"></i> {{tournament.location || 'Bangalore'}}</p>
-                                                <p class="mb-0 p-600">Price Starting From: ₹{{tournament.price || '2500'}}*</p>
-                                                <p class="text-muted mb-0 p-600">{{tournament.games || '3'}} games per team</p>
-                                                <p class="mb-0">{{tournament.description || '* Winner gets a pass to commanders Cup'}}</p>
-                                            </div>
-                                            <div class="col-3">
-                                                <img src="{{tournament.image || '../../../../assets/img/icons/warriors-cup.png'}}"/>
-                                            </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tournament ID</th>
+                                <th>Series Name</th>
+                                <th class="hide-on-mobile">Type</th>
+                                <th>Status</th>
+                                <th>Start Date</th>
+                                <th class="hide-on-mobile">Venues</th>
+                                <th>Cost</th>
+                                <th>Teams</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let tournament of tournamentAllList">
+                                <td>{{tournament.tournamentId}}</td>
+                                <td>{{tournament.seriesName}}</td>
+                                <td class="hide-on-mobile">{{tournament.tournamentType}}</td>
+                                <td>
+                                    <span [class]="'badge bg-' + getStatusBadgeClass(tournament.status)">
+                                        {{tournament.status}}
+                                    </span>
+                                </td>
+                                <td>{{tournament.startDate | date:'mediumDate'}}</td>
+                                <td class="hide-on-mobile">
+                                    <div class="venue-list">
+                                        <div *ngFor="let venue of tournament.venues">
+                                            {{venue.name}} ({{venue.city}})
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" [class.show]="currentStatus === 'live'" [class.active]="currentStatus === 'live'" id="livetournaments" role="tabpanel" aria-labelledby="livetournaments-tab">
-                        <h3><strong>Live Tournaments</strong></h3>
-                        <div class="row align-items-center">
-                            <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12" *ngFor="let tournament of tournamentAllList">
-                                <div class="Tournamentcard-blue mb-3">
-                                    <div class="card-body">
-                                        <div class="row align-items-center">
-                                            <div class="col-9">
-                                                <h3><strong>{{tournament.name}}</strong></h3>
-                                                <p class="mb-0"><i class="align-middle w-12 text-red" data-feather="map-pin"></i> {{tournament.location || 'Bangalore'}}</p>
-                                                <p class="mb-0 p-600">Price Starting From: ₹{{tournament.price || '2500'}}*</p>
-                                                <p class="text-muted mb-0 p-600">{{tournament.games || '3'}} games per team</p>
-                                                <p class="mb-0">{{tournament.description || '* Winner gets a pass to commanders Cup'}}</p>
-                                            </div>
-                                            <div class="col-3">
-                                                <img src="{{tournament.image || '../../../../assets/img/icons/warriors-cup.png'}}"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" [class.show]="currentStatus === 'upcoming'" [class.active]="currentStatus === 'upcoming'" id="upcomingtournaments" role="tabpanel" aria-labelledby="upcomingtournaments-tab">
-                        <h3><strong>Upcoming Tournaments</strong></h3>
-                        <div class="row align-items-center">
-                            <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12" *ngFor="let tournament of tournamentAllList">
-                                <div class="Tournamentcard-red mb-3">
-                                    <div class="card-body">
-                                        <div class="row align-items-center">
-                                            <div class="col-9">
-                                                <h3><strong>{{tournament.name}}</strong></h3>
-                                                <p class="mb-0"><i class="align-middle w-12 text-red" data-feather="map-pin"></i> {{tournament.location || 'Bangalore'}}</p>
-                                                <p class="mb-0 p-600">Price Starting From: ₹{{tournament.price || '2500'}}*</p>
-                                                <p class="text-muted mb-0 p-600">{{tournament.games || '3'}} games per team</p>
-                                                <p class="mb-0">{{tournament.description || '* Winner gets a pass to commanders Cup'}}</p>
-                                            </div>
-                                            <div class="col-3">
-                                                <img src="{{tournament.image || '../../../../assets/img/icons/warriors-cup.png'}}"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" [class.show]="currentStatus === 'completed'" [class.active]="currentStatus === 'completed'" id="completedtournaments" role="tabpanel" aria-labelledby="completedtournaments-tab">
-                        <h3><strong>Completed Tournaments</strong></h3>
-                        <div class="row align-items-center">
-                            <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12" *ngFor="let tournament of tournamentAllList">
-                                <div class="Tournamentcard-black mb-3">
-                                    <div class="card-body">
-                                        <div class="row align-items-center">
-                                            <div class="col-9">
-                                                <h3><strong>{{tournament.name}}</strong></h3>
-                                                <p class="mb-0"><i class="align-middle w-12 text-red" data-feather="map-pin"></i> {{tournament.location || 'Bangalore'}}</p>
-                                                <p class="mb-0 p-600">Price Starting From: ₹{{tournament.price || '2500'}}*</p>
-                                                <p class="text-muted mb-0 p-600">{{tournament.games || '3'}} games per team</p>
-                                                <p class="mb-0">{{tournament.description || '* Winner gets a pass to commanders Cup'}}</p>
-                                            </div>
-                                            <div class="col-3">
-                                                <img src="{{tournament.image || '../../../../assets/img/icons/warriors-cup.png'}}"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
+                                </td>
+                                <td>₹{{tournament.cost}}</td>
+                                <td>
+                                    {{tournament.registeredTeams.length || 0}}/{{tournament.teamLimit}}
+                                </td>
+                                <td>
+                                  <button class="btn btn-sm btn-danger" (click)="deleteTournament(tournament)">
+                                    <i class="align-middle" data-feather="trash-2"></i> Delete
+                                  </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

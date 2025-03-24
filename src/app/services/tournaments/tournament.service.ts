@@ -55,5 +55,10 @@ export class TournamentService {
     });
   }
 
-
+  deleteTournament(id: string): Observable<any> {
+    const url = this.baseUrl + TournamentEndPoint.DELETE_TOURNAMENT.replace(':id', id);
+    return this.httpClient.delete<any>(url, {
+      headers: this.getHeader(),
+    });
+  }
 }
