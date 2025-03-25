@@ -16,24 +16,32 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-2 mb-md-0">
                         <div class="form-group mb-0">
                             <span class="input-icon-left"><i class="align-middle" data-feather="search"></i></span>
-                            <input type="text" class="form-control form-control-search" placeholder="Search Tournaments">
+                            <input type="text" class="form-control form-control-search"
+                                   placeholder="Search Tournaments"
+                                   [(ngModel)]="searchQuery"
+                                   (input)="onSearchInput()">
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-6 col-6 mb-2 mb-md-0">
                         <div class="form-group mb-0">
-                            <select class="form-select">
-                                <option>Select City</option>
+                            <select class="form-select" [(ngModel)]="cityFilter" (change)="applyFilters()">
+                                <option value="">All Cities</option>
+                                <option *ngFor="let city of uniqueCities" [value]="city">{{city}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-6 col-6 mb-2 mb-md-0">
                         <div class="form-group mb-0">
-                            <select class="form-select">
-                                <option>Date</option>
+                            <select class="form-select" [(ngModel)]="dateFilter" (change)="applyFilters()">
+                                <option value="">All Dates</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="year">This Year</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-end align-items-center">
                         <ul class="nav nav-tabs border-0 justify-content-md-end justify-content-center flex-nowrap" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" [class.active]="currentStatus === 'all'" id="alltournaments-tab" (click)="navigateWithStatus('all')" data-bs-toggle="tab" data-bs-target="#alltournaments" type="button" role="tab" aria-controls="alltournaments" aria-selected="false">All</button>
@@ -68,7 +76,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let tournament of tournamentAllList">
+                            <tr *ngFor="let tournament of filteredTournaments">
                                 <td>{{tournament.tournamentId}}</td>
                                 <td>{{tournament.seriesName}}</td>
                                 <td class="hide-on-mobile">{{tournament.tournamentType}}</td>

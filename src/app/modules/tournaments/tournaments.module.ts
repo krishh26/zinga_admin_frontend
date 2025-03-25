@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { TournamentsComponent } from './tournaments/tournaments.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateTournamentsComponent } from './create-tournaments/create-tournaments.component';
@@ -18,9 +19,14 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
     RouterModule.forChild(routes)
+  ],
+  exports: [
+    TournamentsComponent,
+    CreateTournamentsComponent,
   ]
 })
 export class TournamentsModule { }

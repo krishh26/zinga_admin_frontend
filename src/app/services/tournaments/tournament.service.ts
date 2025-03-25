@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
@@ -36,17 +36,22 @@ export class TournamentService {
     return headers;
   }
 
-  getTournamentList(status?: string): Observable<any> {
-    let url = this.baseUrl + TournamentEndPoint.GET_TOURNAMENT_LIST;
+  getTournamentList(status: string, queryParams?: any): Observable<any> {
+    let params = new HttpParams().set('status', status);
 
-    // Add status as a query parameter if it's provided
-    if (status && status !== 'all') {
-      url += `?status=${status}`;
+    if (queryParams) {
+      if (queryParams.name) {
+        params = params.set('name', queryParams.name);
+      }
+      if (queryParams.city) {
+        params = params.set('city', queryParams.city);
+      }
+      if (queryParams.date) {
+        params = params.set('date', queryParams.date);
+      }
     }
 
-    return this.httpClient.get<any>(url, {
-      headers: this.getHeader(),
-    });
+    return this.httpClient.get<any>(this.baseUrl + TournamentEndPoint.GET_TOURNAMENT_LIST, { params });
   }
 
   createTournament(tournament: any): Observable<any> {

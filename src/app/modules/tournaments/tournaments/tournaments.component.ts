@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GroundsService } from 'src/app/services/grounds/grounds.service';
 import { pagination } from 'src/app/utility/shared/constant/pagination.constant';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,6 +7,8 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { UserService } from 'src/app/services/user/user.service';
 import { TournamentService } from 'src/app/services/tournaments/tournament.service';
 import Swal from 'sweetalert2';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 interface Tournament {
   _id: string;
@@ -38,14 +40,22 @@ interface ApiResponse {
   templateUrl: './tournaments.component.html',
   styleUrls: ['./tournaments.component.css']
 })
-export class TournamentsComponent {
+export class TournamentsComponent implements OnInit {
 
   showLoader: boolean = false;
   tournamentAllList: Tournament[] = [];
+  filteredTournaments: Tournament[] = [];
   page: number = pagination.page;
   pagesize = pagination.itemsPerPage;
   totalRecords: number = pagination.totalRecords;
   currentStatus: string = 'all';
+  searchQuery: string = '';
+  cityFilter: string = '';
+  dateFilter: string = '';
+  uniqueCities: string[] = [];
+  private searchSubject = new Subject<string>();
+  myControl = new FormControl();
+  searchText: any;
 
   constructor(
     private tournametservice: TournamentService,
@@ -54,10 +64,25 @@ export class TournamentsComponent {
     private route: ActivatedRoute,
     private authservice: AuthServiceService,
   ) {
+    // Set up the search subject with debounce
+    this.searchSubject.pipe(
+      debounceTime(500), // Wait 500ms after the last event before emitting
+      distinctUntilChanged() // Only emit if the value has changed
+    ).subscribe(() => {
+      this.applyFilters();
+    });
   }
 
   ngOnInit(): void {
-    // Check if there's a status in the URL
+    // Reset all filters on page load
+    this.searchQuery = '';
+    this.cityFilter = '';
+    this.dateFilter = '';
+    this.myControl.valueChanges.subscribe((res: any) => {
+      let storeTest = res;
+      this.searchText = res.toLowerCase();
+    });
+    // Subscribe to query parameters
     this.route.queryParams.subscribe(params => {
       this.currentStatus = params['status'] || 'all';
       this.getAllTournamentsByStatus(this.currentStatus);
@@ -83,13 +108,80 @@ export class TournamentsComponent {
     this.router.navigate(['../create-tournament'], { relativeTo: this.route });
   }
 
+  applyFilters(): void {
+    let filtered = [...this.tournamentAllList];
+
+    // Apply search filter
+    if (this.searchQuery) {
+      const searchLower = this.searchQuery.toLowerCase();
+      filtered = filtered.filter(tournament =>
+        tournament.seriesName.toLowerCase().includes(searchLower) ||
+        tournament.tournamentId.toLowerCase().includes(searchLower)
+      );
+    }
+
+    // Apply city filter
+    if (this.cityFilter) {
+      filtered = filtered.filter(tournament =>
+        tournament.venues.some(venue => venue.city === this.cityFilter)
+      );
+    }
+
+    // Apply date filter
+    if (this.dateFilter) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      filtered = filtered.filter(tournament => {
+        const tournamentDate = new Date(tournament.startDate);
+        tournamentDate.setHours(0, 0, 0, 0);
+
+        switch (this.dateFilter) {
+          case 'today':
+            return tournamentDate.getTime() === today.getTime();
+          case 'week':
+            const weekAgo = new Date(today);
+            weekAgo.setDate(today.getDate() - 7);
+            return tournamentDate >= weekAgo && tournamentDate <= today;
+          case 'month':
+            const monthAgo = new Date(today);
+            monthAgo.setMonth(today.getMonth() - 1);
+            return tournamentDate >= monthAgo && tournamentDate <= today;
+          case 'year':
+            const yearAgo = new Date(today);
+            yearAgo.setFullYear(today.getFullYear() - 1);
+            return tournamentDate >= yearAgo && tournamentDate <= today;
+          default:
+            return true;
+        }
+      });
+    }
+
+    this.filteredTournaments = filtered;
+    this.totalRecords = filtered.length;
+  }
+
+  clearFilters(): void {
+    this.searchQuery = '';
+    this.cityFilter = '';
+    this.dateFilter = '';
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { status: this.currentStatus },
+      queryParamsHandling: 'merge'
+    });
+  }
+
   getAllTournamentsByStatus(status: string) {
     this.showLoader = true;
     this.tournametservice.getTournamentList(status).subscribe((response: ApiResponse) => {
       this.showLoader = false;
       if (response?.status) {
         this.tournamentAllList = response.data;
+        this.filteredTournaments = [...this.tournamentAllList];
         this.totalRecords = response?.totalRecords || 0;
+        this.updateUniqueCities();
+        this.applyFilters(); // Apply any existing filters
       } else {
         this.notificationService.showError(response?.message);
       }
@@ -99,6 +191,18 @@ export class TournamentsComponent {
         this.showLoader = false;
       }
     );
+  }
+
+  private updateUniqueCities(): void {
+    const cities = new Set<string>();
+    this.tournamentAllList.forEach(tournament => {
+      tournament.venues.forEach(venue => {
+        if (venue.city) {
+          cities.add(venue.city);
+        }
+      });
+    });
+    this.uniqueCities = Array.from(cities).sort();
   }
 
   getStatusBadgeClass(status: string): string {
@@ -148,5 +252,10 @@ export class TournamentsComponent {
         });
       }
     });
+  }
+
+  // Add new method for handling search input
+  onSearchInput(): void {
+    this.applyFilters();
   }
 }
