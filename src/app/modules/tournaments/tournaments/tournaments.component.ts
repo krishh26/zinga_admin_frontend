@@ -51,7 +51,7 @@ export class TournamentsComponent implements OnInit {
   currentStatus: string = 'all';
   searchQuery: string = '';
   cityFilter: string = '';
-  dateFilter: string = '';
+  dateFilter: Date | null = null;
   uniqueCities: string[] = [];
   private searchSubject = new Subject<string>();
   myControl = new FormControl();
@@ -77,7 +77,7 @@ export class TournamentsComponent implements OnInit {
     // Reset all filters on page load
     this.searchQuery = '';
     this.cityFilter = '';
-    this.dateFilter = '';
+    this.dateFilter = null;
     this.myControl.valueChanges.subscribe((res: any) => {
       let storeTest = res;
       this.searchText = res.toLowerCase();
@@ -129,31 +129,13 @@ export class TournamentsComponent implements OnInit {
 
     // Apply date filter
     if (this.dateFilter) {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
+      const filterDate = new Date(this.dateFilter);
+      filterDate.setHours(0, 0, 0, 0);
 
       filtered = filtered.filter(tournament => {
         const tournamentDate = new Date(tournament.startDate);
         tournamentDate.setHours(0, 0, 0, 0);
-
-        switch (this.dateFilter) {
-          case 'today':
-            return tournamentDate.getTime() === today.getTime();
-          case 'week':
-            const weekAgo = new Date(today);
-            weekAgo.setDate(today.getDate() - 7);
-            return tournamentDate >= weekAgo && tournamentDate <= today;
-          case 'month':
-            const monthAgo = new Date(today);
-            monthAgo.setMonth(today.getMonth() - 1);
-            return tournamentDate >= monthAgo && tournamentDate <= today;
-          case 'year':
-            const yearAgo = new Date(today);
-            yearAgo.setFullYear(today.getFullYear() - 1);
-            return tournamentDate >= yearAgo && tournamentDate <= today;
-          default:
-            return true;
-        }
+        return tournamentDate.getTime() === filterDate.getTime();
       });
     }
 
@@ -164,7 +146,7 @@ export class TournamentsComponent implements OnInit {
   clearFilters(): void {
     this.searchQuery = '';
     this.cityFilter = '';
-    this.dateFilter = '';
+    this.dateFilter = null;
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { status: this.currentStatus },

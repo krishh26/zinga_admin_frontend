@@ -46,8 +46,8 @@ export class TournamentService {
       if (queryParams.city) {
         params = params.set('city', queryParams.city);
       }
-      if (queryParams.date) {
-        params = params.set('date', queryParams.date);
+      if (queryParams.startDate) {
+        params = params.set('startDate', queryParams.startDate);
       }
     }
 
