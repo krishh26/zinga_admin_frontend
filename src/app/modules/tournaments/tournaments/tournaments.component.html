@@ -73,6 +73,13 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                          <tr>
+                            <td *ngIf="!filteredTournaments?.length" colspan="14">
+                              <app-no-record-found></app-no-record-found>
+                            </td>
+                          </tr>
+
                             <tr *ngFor="let tournament of filteredTournaments">
                                 <td>{{tournament.tournamentId}}</td>
                                 <td>{{tournament.seriesName}}</td>
