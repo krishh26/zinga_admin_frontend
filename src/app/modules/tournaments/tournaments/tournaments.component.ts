@@ -6,6 +6,7 @@ import { AuthServiceService } from 'src/app/services/auth/auth-service.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { TournamentService } from 'src/app/services/tournaments/tournament.service';
+import Swal from 'sweetalert2';
 
 interface Tournament {
   _id: string;
@@ -123,21 +124,29 @@ export class TournamentsComponent {
     this.router.navigate(['../edit-tournament', tournament._id], { relativeTo: this.route });
   }
 
-  deleteTournament(tournament: Tournament) {
-    if (confirm('Are you sure you want to delete this tournament?')) {
-      this.tournametservice.deleteTournament(tournament._id).subscribe({
-        next: (response: ApiResponse) => {
-          if (response?.status) {
+  deleteTournament(tournamentId: string): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to delete this tournament?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00B96F',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.tournametservice.deleteTournament(tournamentId).subscribe({
+          next: (response) => {
             this.notificationService.showSuccess('Tournament deleted successfully');
             this.getAllTournamentsByStatus(this.currentStatus);
-          } else {
-            this.notificationService.showError(response?.message);
+          },
+          error: (error) => {
+            console.error('Error deleting tournament:', error);
+            this.notificationService.showError(error?.error?.message || 'Failed to delete tournament');
           }
-        },
-        error: (error: any) => {
-          this.notificationService.showError(error?.message || 'Failed to delete tournament');
-        }
-      });
-    }
+        });
+      }
+    });
   }
 }

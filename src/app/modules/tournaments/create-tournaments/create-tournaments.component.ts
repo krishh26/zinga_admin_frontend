@@ -35,20 +35,22 @@ export class CreateTournamentsComponent implements OnInit {
       seriesName: ['', [Validators.required]],
       tournamentType: ['Warriors Cup', [Validators.required]],
       startDate: ['', [Validators.required]],
-      teamLimit: [, [Validators.required, Validators.min(2)]],
+      teamLimit: [2, [Validators.required, Validators.min(2)]],
       venues: [[], [Validators.required]],
       cost: [, [Validators.required, Validators.min(0)]],
-      format: ['', [Validators.required]],
+      format: ['T20', [Validators.required]],
       stayOnScreen: [true],
       matchStartTime: ['', [Validators.required]],
-      matchDuration: [, [Validators.required, Validators.min(30)]],
-      matchGapHours: [, [Validators.required, Validators.min(0)]],
+      matchDuration: [60, [Validators.required, Validators.min(30)]],
+      matchGapMinutes: [, [Validators.required, Validators.min(0)]],
       matchType: ['', [Validators.required]],
       oversPerInnings: [, [Validators.required, Validators.min(1)]],
       oversPerBowler: [, [Validators.required, Validators.min(1)]],
       ballType: ['', [Validators.required]],
       pitchType: ['', [Validators.required]],
-      umpires: [[], [Validators.required]]
+      umpires: [[], [Validators.required]],
+      substitute: [, [Validators.required]],
+      totalMember: [, [Validators.required]],
     });
   }
 
@@ -94,6 +96,7 @@ export class CreateTournamentsComponent implements OnInit {
         const control = this.tournamentForm.get(key);
         if (control?.invalid) {
           control.markAsTouched();
+          console.log(`Field ${key} is invalid:`, control.errors);
         }
       });
       this.notificationService.showError('Please fill all required fields correctly');
@@ -105,12 +108,12 @@ export class CreateTournamentsComponent implements OnInit {
       next: (response) => {
         this.isSubmitting = false;
         this.notificationService.showSuccess('Tournament created successfully');
-        this.router.navigate(['/tournaments']);
+        this.router.navigate(['/tournaments/tournament']);
       },
       error: (error) => {
         this.isSubmitting = false;
         console.error('Error creating tournament:', error);
-        this.notificationService.showError(error.message || 'Failed to create tournament');
+        this.notificationService.showError(error?.error?.message || 'Failed to create tournament');
       }
     });
   }

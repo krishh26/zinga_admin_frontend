@@ -90,7 +90,7 @@
                                     {{tournament.registeredTeams.length || 0}}/{{tournament.teamLimit}}
                                 </td>
                                 <td>
-                                  <button class="btn btn-sm btn-danger" (click)="deleteTournament(tournament)">
+                                  <button class="btn btn-sm btn-danger" (click)="deleteTournament(tournament.tournamentId)">
                                     <i class="align-middle" data-feather="trash-2"></i> Delete
                                   </button>
                                 </td>

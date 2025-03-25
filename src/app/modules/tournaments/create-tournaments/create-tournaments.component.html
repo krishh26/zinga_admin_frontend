@@ -52,6 +52,35 @@
               Team limit must be at least 2
             </div>
           </div>
+
+          <div class="col-12 col-sm-6 col-lg-4 mb-3">
+            <label for="teamLimit" class="form-label">Substitute <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="substitute" formControlName="substitute" min="2"
+              [ngClass]="{'is-invalid': tournamentForm.get('substitute')?.touched && tournamentForm.get('substitute')?.invalid}">
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('substitute')?.touched && tournamentForm.get('substitute')?.errors?.['required']">
+              Substitute is required
+            </div>
+            <!-- <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('substitute')?.touched && tournamentForm.get('substitute')?.errors?.['min']">
+              Substitute must be required.
+            </div> -->
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4 mb-3">
+            <label for="totalMember" class="form-label">Total Member <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="totalMember" formControlName="totalMember" min="2"
+              [ngClass]="{'is-invalid': tournamentForm.get('totalMember')?.touched && tournamentForm.get('totalMember')?.invalid}">
+            <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('totalMember')?.touched && tournamentForm.get('totalMember')?.errors?.['required']">
+              Total Member is required
+            </div>
+            <!-- <div class="invalid-feedback"
+              *ngIf="tournamentForm.get('totalMember')?.touched && tournamentForm.get('totalMember')?.errors?.['min']">
+              Total Member must required.
+            </div> -->
+          </div>
+
           <div class="col-12 col-sm-6 col-lg-4 mb-3">
             <label for="cost" class="form-label">Cost (₹) <span class="text-danger">*</span></label>
             <input type="number" class="form-control" id="cost" formControlName="cost" min="0"
@@ -137,12 +166,12 @@
             </div>
           </div>
           <div class="col-12 col-sm-6 col-lg-3 mb-3">
-            <label for="matchGapHours" class="form-label">Gap Between Matches (hours) <span
+            <label for="matchGapMinutes" class="form-label">Gap Between Matches (hours) <span
                 class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="matchGapHours" formControlName="matchGapHours" min="0"
-              [ngClass]="{'is-invalid': tournamentForm.get('matchGapHours')?.touched && tournamentForm.get('matchGapHours')?.invalid}">
+            <input type="number" class="form-control" id="matchGapMinutes" formControlName="matchGapMinutes" min="0"
+              [ngClass]="{'is-invalid': tournamentForm.get('matchGapMinutes')?.touched && tournamentForm.get('matchGapMinutes')?.invalid}">
             <div class="invalid-feedback"
-              *ngIf="tournamentForm.get('matchGapHours')?.touched && tournamentForm.get('matchGapHours')?.errors?.['required']">
+              *ngIf="tournamentForm.get('matchGapMinutes')?.touched && tournamentForm.get('matchGapMinutes')?.errors?.['required']">
               Gap between matches is required
             </div>
           </div>
